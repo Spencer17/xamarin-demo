@@ -1,4 +1,4 @@
-name: Build Xamarin.iOS app
+name: Build Xamarin.Android app
 
 on: [push]
 
@@ -19,4 +19,4 @@ jobs:
       run: nuget restore source/EduCATS.sln
 
     - name: Build
-      run: msbuild source/EduCATS.sln
+      run: msbuild source/EduCATS.sln /t:PackageForAndroid
