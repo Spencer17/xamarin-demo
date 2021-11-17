@@ -5,13 +5,11 @@ on: [push]
 jobs:
   build:
 
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set default Xamarin SDK versions
-      run: |
-        $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.10 --android=10.2    
+
     
     - name: Setup .NET Core SDK 5.0.x
       uses: actions/setup-dotnet@v1
@@ -22,4 +20,4 @@ jobs:
       run: nuget restore source/EduCATS.sln
 
     - name: Build
-      run: msbuild source/EduCATS.sln /t:PackageForAndroid
+      run: msbuild source/EduCATS.sln /t:PackageForAndroid /p:Configuration=Debug
